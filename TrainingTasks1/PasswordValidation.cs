@@ -10,43 +10,37 @@ namespace TrainingTasks1
     class PasswordValidation : IPasswordValidation
     {
         private readonly IPasswordHandler _passwordHandler;
+        private readonly int _minLength;
+        private readonly int _minNumUpperChars;
+        private readonly int _minNumbers;
+
 
         public PasswordValidation(IPasswordHandler passwordHandler)
         {
             _passwordHandler = passwordHandler;
+            _minLength = 10;
+            _minNumUpperChars = 1;
+            _minNumbers = 1;
         }
 
         public PasswordValidationResult Validate(string password)
         {
-            var res = new PasswordValidationResult() {IsValid = false, Message = "Password cannot be blank"};
+            var res = new PasswordValidationResult(false, "Password cannot be blank");
 
             if(String.IsNullOrEmpty(password)) 
-                return res;
+                return new PasswordValidationResult(false,  "Password cannot be blank");
 
-            const int minLength = 10, minNumUpperChars = 1, minNumbers = 1;
+            if(!_passwordHandler.HasEnoughUpperChars(password, _minNumUpperChars))
+                return new PasswordValidationResult(false, "Password must have one uppercase character");
 
-            if(!_passwordHandler.HasEnoughUpperChars(password, minNumUpperChars))
-            {
-                res.Message = "Password must have one uppercase character";
-                return res;
-            }
-
-            if(!_passwordHandler.HasEnoughNumbers(password, minNumbers))
-            {
-                res.Message = "Password must have at least one number";
-                return res;
-            }
+            if(!_passwordHandler.HasEnoughNumbers(password, _minNumbers))
+                return new PasswordValidationResult(false, "Password must have at least one number") ;
             
-            if(!_passwordHandler.IsAtLeastLength(password, minLength))
-            {
-                res.Message = string.Format("Password must be at least {0} characters long.", minLength);
-                return res;
-            }
+            if(!_passwordHandler.IsAtLeastLength(password, _minLength))
+                return new PasswordValidationResult(false, string.Format("Password must be at least {0} characters long.",_minLength));
 
-            res.Message = "Password is valid";
-            res.IsValid = true;
-
-            return res;
+            // Valid
+            return new PasswordValidationResult() { IsValid = true };
         }
     }
 }

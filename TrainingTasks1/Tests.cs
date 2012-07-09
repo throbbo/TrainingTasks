@@ -75,7 +75,6 @@ namespace TrainingTasks1
             var result = _passwordValidation.Validate("aaAaaaeaa1");
 
             Assert.True(result.IsValid);
-            Assert.AreEqual(result.Message, "Password is valid");
         }
 
 
