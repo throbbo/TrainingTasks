@@ -49,6 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PasswordHandler.cs" />
+    <Compile Include="PasswordValidation.cs" />
     <Compile Include="IPasswordValidation.cs" />
     <Compile Include="PasswordValidationResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

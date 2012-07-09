@@ -9,4 +9,5 @@ namespace TrainingTasks1
     {
         PasswordValidationResult Validate(string password);
     }
+
 }
