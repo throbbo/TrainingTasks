@@ -2,12 +2,8 @@ using System;
 
 namespace TrainingTasks2.ISP
 {
-    public class Cat : IAnimal
+    public class Cat : IAnimal, IRun
     {
-        public void Fly()
-        {
-            throw new NotImplementedException();
-        }
 
         public void See()
         {

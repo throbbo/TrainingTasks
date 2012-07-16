@@ -5,22 +5,27 @@ using System.Text;
 
 namespace TrainingTasks2.DIP
 {
-    public class BirthdayCalculator
+    public interface IBirthdayCalculator
     {
-        private readonly List<Birthday> _birthdays;
+        List<IBirthday> GetTodaysBirthdays();
+    }
+
+    public class BirthdayCalculator : IBirthdayCalculator
+    {
+        private readonly List<IBirthday> _birthdays;
 
         public BirthdayCalculator()
         {
-            var birthdayService = new BirthdayService();
+            IBirthdayService birthdayService = new BirthdayService();
             _birthdays = birthdayService.GetAllBirthdays();
         }
 
-        public List<Birthday> Birthdays
+        public List<IBirthday> Birthdays
         {
             get { return _birthdays; }
         }
 
-        public List<Birthday> GetTodaysBirthdays()
+        public List<IBirthday> GetTodaysBirthdays()
         {
             return _birthdays
                 .Where(bd => bd.Date == DateTime.Now.Date)

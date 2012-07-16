@@ -6,9 +6,17 @@ namespace TrainingTasks2.ISP
 {
     public interface IAnimal
     {
-        void Fly();
-        void Run();
         void See();
         void Eat();
+    }
+
+    public interface IFly
+    {
+        void Fly();
+    }
+
+    public interface IRun
+    {
+        void Run();
     }
 }

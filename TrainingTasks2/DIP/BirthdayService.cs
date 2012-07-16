@@ -3,11 +3,16 @@ using System.Collections.Generic;
 
 namespace TrainingTasks2.DIP
 {
-    public class BirthdayService
+    public interface IBirthdayService
     {
-        public List<Birthday> GetAllBirthdays()
+        List<IBirthday> GetAllBirthdays();
+    }
+
+    public class BirthdayService : IBirthdayService
+    {
+        public List<IBirthday> GetAllBirthdays()
         {
-            return new List<Birthday>()
+            return new List<IBirthday>()
                        {
                            new Birthday() {Name = "David", Date = new DateTime(1981, 2, 8)},
                            new Birthday() {Name = "Jeremy", Date = new DateTime(1965, 9, 23)},

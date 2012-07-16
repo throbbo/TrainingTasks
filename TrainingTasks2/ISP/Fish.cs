@@ -4,10 +4,6 @@ namespace TrainingTasks2.ISP
 {
     public class Fish : IAnimal
     {
-        public void Fly()
-        {
-            throw new NotImplementedException();
-        }
 
         public void See()
         {
@@ -17,11 +13,6 @@ namespace TrainingTasks2.ISP
         public void Eat()
         {
             // write code about eating of the fish
-        }
-
-        public void Run()
-        {
-            throw new NotImplementedException();
         }
     }
 }
