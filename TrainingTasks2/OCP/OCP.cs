@@ -5,33 +5,67 @@ using System.Text;
 
 namespace TrainingTasks2.OCP
 {
-    public class ShoppingCart
+
+    public class ItemPercentage
+    {
+        public ItemPercentage(int lower, int upper, decimal percentage)
+        {
+            CardItemsUpper = upper;
+            CartItemsLower = lower;
+            Percentage = percentage;
+        }
+        public int CardItemsUpper { get; set; }
+        public int CartItemsLower { get; set; }
+        public decimal Percentage { get; set; }
+    }
+    public static class ItemPercentageGetter
+    {
+        public static List<ItemPercentage>  DiscountList { get; set; }
+        static ItemPercentageGetter()
+        {
+            DiscountList = new List<ItemPercentage>() 
+            {
+                new ItemPercentage(0,5,0), 
+                new ItemPercentage(5,10,10), 
+                new ItemPercentage(10,15,15),
+                new ItemPercentage(15,999999999,25),
+            };
+        }
+    }
+
+    public interface IItemPercentageHandler
+    {
+        decimal GetDiscountPercentage(int items);
+    }
+
+    public class ItemPercentageHandler : IItemPercentageHandler
+    {
+        public decimal GetDiscountPercentage(int items)
+        {
+            foreach (var itemPercentage in ItemPercentageGetter.DiscountList)
+            {
+                if(items >= itemPercentage.CartItemsLower && items < itemPercentage.CardItemsUpper )
+                {
+                    return itemPercentage.Percentage;
+                }
+            }
+            return 0;
+        }
+    }
+
+    public interface IShoppingCart
+    {
+        void Add(CartItem product);
+        void Delete(CartItem product);
+    }
+
+    public class ShoppingCart : IShoppingCart
     {
         private List<CartItem> _items;
 
         public ShoppingCart()
         {
             _items = new List<CartItem>();
-        }
-
-        public decimal GetDiscountPercentage()
-        {
-            decimal ammount = 0;
-
-            if (_items.Count >= 5 && _items.Count < 10)
-            {
-                ammount = 10;
-            }
-            else if (_items.Count >= 10 && _items.Count < 15)
-            {
-                ammount = 15;
-            }
-            else if (_items.Count >= 15)
-            {
-                ammount = 25;
-            }
-
-            return ammount;
         }
 
         public void Add(CartItem product)
