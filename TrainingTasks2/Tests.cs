@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using NUnit.Framework;
 using TrainingTasks2.DIP;
+using TrainingTasks2.LSP;
 
 namespace TrainingTasks2
 {
@@ -31,5 +32,25 @@ namespace TrainingTasks2
             Assert.AreEqual(0, todaysBds.Count);
         }
 
+
+         [Test]
+        public void TesLsp1()
+         {
+             IFourSidedShape shape = new Rectangle();
+             shape.Height = 5;
+             shape.Width = 10;
+
+             Assert.AreEqual(5, shape.Height);
+        }
+
+         [Test]
+        public void TesLsp2()
+         {
+             IFourSidedShape shape = new Square();
+             shape.Height = 5;
+             shape.Width = 10;
+
+             Assert.AreEqual(10, shape.Height);
+        }
     }
 }

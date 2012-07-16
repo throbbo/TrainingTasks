@@ -5,31 +5,32 @@ using System.Text;
 
 namespace TrainingTasks2.LSP
 {
-    public class Rectangle
+    public interface IFourSidedShape
     {
-        public virtual int Width { get; set; }
-        public virtual int Height { get; set; }
+        int Width { get; set; }
+        int Height { get; set; }
     }
 
-    public class Square : Rectangle
+    public class Rectangle : IFourSidedShape
     {
-        public override int Height
+        public int Width { get; set; }
+        public int Height { get; set; }
+    }
+
+    public class Square : IFourSidedShape
+    {
+        private int _height;
+        
+        public int Height
         {
-            get { return base.Height; }
-            set { SetWidthAndHeight(value); }
+            get { return _height; }
+            set { _height = value; }
         }
 
-        public override int Width
+        public int Width
         {
-            get { return base.Width; }
-            set { SetWidthAndHeight(value); }
-        }
-
-        // Both sides of a square are equal.
-        private void SetWidthAndHeight(int value)
-        {
-            base.Height = value;
-            base.Width = value;
+            get { return _height; }
+            set { _height = value; }
         }
     }
 }
