@@ -6,6 +6,7 @@ using NUnit.Framework;
 using TrainingTasks2.DIP;
 using TrainingTasks2.LSP;
 using TrainingTasks2.OCP;
+using TrainingTasks2.SRP;
 
 namespace TrainingTasks2
 {
@@ -95,5 +96,15 @@ namespace TrainingTasks2
              var res = percentageHandler.GetDiscountPercentage(17);
              Assert.AreEqual(25, res);
         }
+
+        [Test]
+        public void TestSrp ()
+        {
+            var userSvc = new UserService();
+            userSvc.Register("rsumion@inlogik.com", "Hellothere");
+
+            // Could add another 
+        }
+
     }
 }
