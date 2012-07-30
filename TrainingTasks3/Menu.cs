@@ -10,6 +10,7 @@ namespace TrainingTasks3
         {
             var menuConfig = new MenuConfig();
             var menuConfigBuilder = new MenuConfigBuilder(menuConfig);
+            
             func(menuConfigBuilder);
             
             return menuConfig;

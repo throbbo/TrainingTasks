@@ -7,43 +7,34 @@ namespace TrainingTasks3
 {
     public interface IMenuConfigBuilder
     {
-        bool Visible(Func<MenuContext, MenuItem, bool> func);
-        IEnumerable<MenuItem> AddDynamic(Func<MenuContext, IEnumerable<MenuItem>> func);
+        void Visible(Func<MenuContext, MenuItem, bool> func);
+        void AddDynamic(Func<MenuContext, IEnumerable<MenuItem>> func);
         void AddStatic(string test, string s);
     }
 
     public class MenuConfigBuilder : IMenuConfigBuilder
     {
         
-        private readonly IMenuConfig _Config;
-        public MenuConfigBuilder(IMenuConfig Config)
+        private readonly IMenuConfig _config;
+        public MenuConfigBuilder(IMenuConfig config)
         {
-            _Config = Config;
+            _config = config;
         }
 
-        public bool Visible(Func<MenuContext, MenuItem, bool> func)
+        public void Visible(Func<MenuContext, MenuItem, bool> func)
         {
-            var mc = new MenuContext();
-            var mi = new MenuItem();
-
-            _Config.IsVisible = func;
-
-            return _Config.IsVisible(mc, mi);
+            _config.IsVisible = func;
         }
 
-        public IEnumerable<MenuItem> AddDynamic(Func<MenuContext, IEnumerable<MenuItem>> func)
+        public void AddDynamic(Func<MenuContext, IEnumerable<MenuItem>> func)
         {
-            var mc = new MenuContext();
-
-            _Config.MenuItems = func;
-
-            return _Config.MenuItems(mc);
+            _config.MenuItems = func;
         }
 
         public void AddStatic(string test, string s)
         {
-            _Config.Url = new Url(test);
-            _Config.Label = s;
+            _config.Url = new Url(test);
+            _config.Label = s;
         }  
     }
 
