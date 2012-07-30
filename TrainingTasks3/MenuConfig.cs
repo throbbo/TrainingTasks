@@ -1,15 +1,13 @@
 using System;
 using System.Collections.Generic;
-using System.Reflection.Emit;
-using System.Security.Policy;
+using System.Linq;
 
 namespace TrainingTasks3
 {
-    public class MenuConfig 
+    public class MenuConfig
     {
-        public Func<MenuContext, IEnumerable<MenuItem>> MenuItems { get; set; }
-        public Url Url { get; set; }
-        public string Label { get; set; }
-        public Func<MenuContext, MenuItem, bool> IsVisible { get; set; }
+        public List<MenuItem> StaticMenuItems { get; set; }
+        public Func<MenuContext, IEnumerable<MenuItem>> DynamicMenuItemsFunc { get; set; }
+        public Func<MenuContext, MenuItem, bool> IsVisibleFunc { get; set; }
     }
 }

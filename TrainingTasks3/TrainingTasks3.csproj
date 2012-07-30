@@ -44,6 +44,8 @@
   <ItemGroup>
     <Compile Include="IMenuConfigBuilder.cs" />
     <Compile Include="Menu.cs" />
+    <Compile Include="MenuBuilder.cs" />
+    <Compile Include="MenuBuilderTests.cs" />
     <Compile Include="MenuConfig.cs" />
     <Compile Include="MenuConfigBuilder.cs" />
     <Compile Include="MenuItem.cs" />
