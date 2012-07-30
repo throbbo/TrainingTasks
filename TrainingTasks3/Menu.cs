@@ -6,10 +6,11 @@ namespace TrainingTasks3
 {
     public static class Menu
     {
-        public static MenuConfig Config(Action<MenuConfig> func)
+        public static MenuConfig Config(Action<IMenuConfigBuilder> func)
         {
             var menuConfig = new MenuConfig();
-            func.Invoke(menuConfig);
+            var menuConfigBuilder = new MenuConfigBuilder(menuConfig);
+            func(menuConfigBuilder);
             
             return menuConfig;
         }

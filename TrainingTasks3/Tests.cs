@@ -16,15 +16,37 @@ namespace TrainingTasks3
             // Implement the following API with tests.
             // Leave this test alone. It should obviously compile once finished.
 
-            MenuConfig menuConfig = Menu.Config(options =>
+            IMenuConfig menuConfig = Menu.Config(options =>
             {
                 options.AddStatic("/test", "Test");                                        // first param is url, second is text
                 options.AddDynamic(context => { return Enumerable.Empty<MenuItem>(); });   // context is MenuContext, returns IEnumerable<MenuItem>
                 options.Visible((context, menuItem) => true);                              // context is MenuContext, menuItem is MenuItem, returns bool
             });
-            Assert.AreEqual("Test", menuConfig.SomeText);
-            Assert.AreEqual("/test", menuConfig.Url.Value);
-            Assert.AreEqual(0, menuConfig.MenuItems.Count());
         }
+
+        //[Test]
+        //public void Test2 ()
+        //{
+        //    // Implement the following API with tests.
+        //    // Leave this test alone. It should obviously compile once finished.
+
+        //    IMenuConfig menuConfig = Menu.Config(options =>
+        //    {
+        //        options.AddStatic("/test12", "Test12");                                        // first param is url, second is text
+        //        options.AddDynamic(context => { return Enumerable.Empty<MenuItem>(); });   // context is MenuContext, returns IEnumerable<MenuItem>
+        //        options.Visible((context, menuItem) => true);                              // context is MenuContext, menuItem is MenuItem, returns bool
+        //    });
+        //    Assert.AreEqual("Test12", menuConfig.MenuItems.FirstOrDefault().Label);
+        //    Assert.AreEqual("/test12", menuConfig.MenuItems.FirstOrDefault().Url.Value);
+        //    Assert.AreEqual(0, menuConfig.MenuItems.Count());            
+        //}
+
+        //[Test]
+        //public void Test3()
+        //{
+
+        //    //var menuContext = new MenuContext {IsAdministrator = true, ContextName = "Admin"};
+        //    //var menuItem = new MenuItem() {Url = new Url("/testAdmin"), Label = "Admin Menu";
+        //}
     }
 }
