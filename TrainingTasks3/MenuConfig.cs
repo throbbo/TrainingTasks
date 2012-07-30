@@ -26,18 +26,18 @@ namespace TrainingTasks3
             var mc = new MenuContext();
             var mi = new MenuItem();
 
-            _Config.IsVisible = func.Invoke(mc, mi);
-            
-            return _Config.IsVisible;
+            _Config.IsVisible = func;
+
+            return _Config.IsVisible(mc, mi);
         }
 
         public IEnumerable<MenuItem> AddDynamic(Func<MenuContext, IEnumerable<MenuItem>> func)
         {
             var mc = new MenuContext();
-            
-            _Config.MenuItems = func.Invoke(mc);
 
-            return _Config.MenuItems;
+            _Config.MenuItems = func;
+
+            return _Config.MenuItems(mc);
         }
 
         public void AddStatic(string test, string s)
@@ -49,17 +49,17 @@ namespace TrainingTasks3
 
     public interface IMenuConfig
     {
-        IEnumerable<MenuItem> MenuItems { get; set; }
+        Func<MenuContext, IEnumerable<MenuItem>> MenuItems { get; set; }
         Url Url { get; set; }
         string Label { get; set; }
-        bool IsVisible { get; set; }
+        Func<MenuContext, MenuItem, bool> IsVisible { get; set; }
     }
 
     public class MenuConfig : IMenuConfig
     {
-        public IEnumerable<MenuItem> MenuItems { get; set; }
+        public Func<MenuContext, IEnumerable<MenuItem>> MenuItems { get; set; }
         public Url Url { get; set; }
         public string Label { get; set; }
-        public bool IsVisible { get; set; }
+        public Func<MenuContext, MenuItem, bool> IsVisible { get; set; }
     }
 }
