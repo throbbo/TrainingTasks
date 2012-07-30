@@ -16,10 +16,16 @@ namespace TrainingTasks3
     {
         
         private readonly IMenuConfig _config;
+
         public MenuConfigBuilder(IMenuConfig config)
         {
             _config = config;
         }
+        
+        //public void SetConfig(IMenuConfig config)
+        //{
+        //    _config.IsVisible = func;
+        //}
 
         public void Visible(Func<MenuContext, MenuItem, bool> func)
         {

@@ -15,5 +15,7 @@ namespace TrainingTasks3
             
             return menuConfig;
         }
+
+
     }
 }

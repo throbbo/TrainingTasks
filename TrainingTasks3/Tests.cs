@@ -24,29 +24,50 @@ namespace TrainingTasks3
             });
         }
 
-        //[Test]
-        //public void Test2 ()
-        //{
-        //    // Implement the following API with tests.
-        //    // Leave this test alone. It should obviously compile once finished.
+        [Test]
+        public void Test2 ()
+        {
 
-        //    IMenuConfig menuConfig = Menu.Config(options =>
-        //    {
-        //        options.AddStatic("/test12", "Test12");                                        // first param is url, second is text
-        //        options.AddDynamic(context => { return Enumerable.Empty<MenuItem>(); });   // context is MenuContext, returns IEnumerable<MenuItem>
-        //        options.Visible((context, menuItem) => true);                              // context is MenuContext, menuItem is MenuItem, returns bool
-        //    });
-        //    Assert.AreEqual("Test12", menuConfig.MenuItems.FirstOrDefault().Label);
-        //    Assert.AreEqual("/test12", menuConfig.MenuItems.FirstOrDefault().Url.Value);
-        //    Assert.AreEqual(0, menuConfig.MenuItems.Count());            
-        //}
+            IMenuConfig menuConfig = Menu.Config(options =>
+            {
+                options.AddStatic("/test", "Test");
+                options.Visible((context, menuItem) =>
+                                    {
+                                        if(context.MenuGroup == "GROUP-A" && menuItem.Label =="MENUITEM-A" )
+                                            return true;
 
-        //[Test]
-        //public void Test3()
-        //{
+                                        return false;
+                                    });                              // context is MenuContext, menuItem is MenuItem, returns bool
+            });
 
-        //    //var menuContext = new MenuContext {IsAdministrator = true, ContextName = "Admin"};
-        //    //var menuItem = new MenuItem() {Url = new Url("/testAdmin"), Label = "Admin Menu";
-        //}
+            var myContext = new MenuContext() {MenuGroup = "GROUP-A"};
+            var myMenuItem = new MenuItem() {Label= "MENUITEM-A", Url = new Url("/MENUITEM-A")};
+
+            Assert.AreEqual(true, menuConfig.IsVisible(myContext, myMenuItem));
+
+        }
+
+        [Test]
+        public void Test3 ()
+        {
+
+            IMenuConfig menuConfig = Menu.Config(options =>
+            {
+                options.AddStatic("/test", "Test");
+                options.Visible((context, menuItem) =>
+                                    {
+                                        if(context.MenuGroup == "GROUP-A" && menuItem.Label =="MENUITEM-A" )
+                                            return true;
+
+                                        return false;
+                                    });                              // context is MenuContext, menuItem is MenuItem, returns bool
+            });
+
+            var myContext = new MenuContext() {MenuGroup = "GROUP-A"};
+            var myMenuItem = new MenuItem() {Label= "MENUITEM-b", Url = new Url("/MENUITEM-b")};
+
+            Assert.AreEqual(false, menuConfig.IsVisible(myContext, myMenuItem));
+
+        }
     }
 }
