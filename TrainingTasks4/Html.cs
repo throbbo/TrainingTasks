@@ -38,9 +38,10 @@ namespace TrainingTasks4
             return this;
         }
 
-        public Html Modify(Func<object, object> func)
+        public Html Modify(Func<Html, Html> func)
         {
-            throw new NotImplementedException();
+            func(this);
+            return this;
         }
 
         public override string ToString()

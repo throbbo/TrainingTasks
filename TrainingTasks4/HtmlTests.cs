@@ -29,12 +29,12 @@ namespace TrainingTasks4
             Assert.AreEqual("<span test=\"testvalue\" class=\"wow\"></span>", html.ToString());
         }
 
-        //[Test]
-        //public void BasicHtmlBuilderModify()
-        //{
-        //    Html html = Html.Tag("div").Attr("test", "testvalue").Modify(x => x.AddClass("wow"));
-        //    Assert.AreEqual("<div test=\"testvalue\" class=\"wow\"></div>", html.ToString());
-        //}
+        [Test]
+        public void BasicHtmlBuilderModify()
+        {
+            Html html = Html.Tag("div").Attr("test", "testvalue").Modify(x => x.AddClass("wow"));
+            Assert.AreEqual("<div test=\"testvalue\" class=\"wow\"></div>", html.ToString());
+        }
 
         //[Test]
         //public void BasicHtmlBuilderWithoutToString()
