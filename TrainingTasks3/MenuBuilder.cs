@@ -23,10 +23,13 @@ namespace TrainingTasks3
                 var dynamicList = (_config.DynamicMenuItemsFunc(_context) ?? new List<MenuItem>()).ToList();
                 _config.DynamicMenuItems = dynamicList;
             }
-
-            list.AddRange(_config.StaticMenuItems);
-            list.AddRange(_config.DynamicMenuItems);
             
+            if(_config.IsVisibleFunc != null)
+            {
+                list.AddRange(_config.StaticMenuItems.Where(menuItem => _config.IsVisibleFunc(_context, menuItem)));
+                list.AddRange(_config.DynamicMenuItems.Where(menuItem => _config.IsVisibleFunc(_context, menuItem)));
+            }
+
             return list;
         }
     }
