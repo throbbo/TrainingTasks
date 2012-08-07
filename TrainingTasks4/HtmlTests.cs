@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
@@ -30,18 +29,18 @@ namespace TrainingTasks4
             Assert.AreEqual("<span test=\"testvalue\" class=\"wow\"></span>", html.ToString());
         }
 
-        [Test]
-        public void BasicHtmlBuilderModify()
-        {
-            Html html = Html.Tag("div").Attr("test", "testvalue").Modify(x => x.AddClass("wow"));
-            Assert.AreEqual("<div test=\"testvalue\" class=\"wow\"></div>", html.ToString());
-        }
+        //[Test]
+        //public void BasicHtmlBuilderModify()
+        //{
+        //    Html html = Html.Tag("div").Attr("test", "testvalue").Modify(x => x.AddClass("wow"));
+        //    Assert.AreEqual("<div test=\"testvalue\" class=\"wow\"></div>", html.ToString());
+        //}
 
-        [Test]
-        public void BasicHtmlBuilderWithoutToString()
-        {
-            Html html = Html.Tag("span").Attr("test", "testvalue");
-            Assert.True("<span test=\"testvalue\"></span>" == html);
-        }
+        //[Test]
+        //public void BasicHtmlBuilderWithoutToString()
+        //{
+        //    Html html = Html.Tag("span").Attr("test", "testvalue");
+        //    Assert.True("<span test=\"testvalue\"></span>" == html);
+        //}
     }
 }
