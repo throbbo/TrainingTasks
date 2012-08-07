@@ -12,10 +12,12 @@ namespace TrainingTasks4
         public Html()
         {
             Attrs = new Dictionary<string, string>();
+            Classes = new List<string>();
         }
         public string MyTag { get; set; }
         public Dictionary<string, string> Attrs { get; set; }
-        
+        public List<string> Classes { get; set; }
+
         public static Html Tag(string div)
         {
             var html = new Html() {MyTag = div};
@@ -30,9 +32,10 @@ namespace TrainingTasks4
             return this;
         }
 
-        public Html AddClass(string wow)
+        public Html AddClass(string inClass)
         {
-            throw new NotImplementedException();
+            Classes.Add(inClass);
+            return this;
         }
 
         public Html Modify(Func<object, object> func)
@@ -42,7 +45,7 @@ namespace TrainingTasks4
 
         public override string ToString()
         {
-            return string.Format("<{0} {1}></{0}>",MyTag, GetAllAttrs(Attrs));
+            return string.Format("<{0} {1}{2}></{0}>",MyTag, GetAllAttrs(Attrs),GetAllClasses(Classes));
         }
 
         public string GetAllAttrs (Dictionary<string,string> attrs )
@@ -55,6 +58,19 @@ namespace TrainingTasks4
             }
             return retStr;
         }
-        
+   
+        public string GetAllClasses (List<string> classes )
+        {
+            var classStr = "";
+
+            if (classes.Count == 0) return "";
+            foreach (var thisClass in classes)
+            {
+                if (classStr != "") classStr += " ";
+                classStr += thisClass;
+            }
+            
+            return string.Format(" class=\"{0}\"",classStr);
+        }     
     }
 }
