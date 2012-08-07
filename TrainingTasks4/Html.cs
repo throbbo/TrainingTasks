@@ -50,6 +50,7 @@ namespace TrainingTasks4
             var retStr = "";
             foreach (var attr in attrs)
             {
+                if (retStr != "") retStr += " ";
                 retStr += attr.Key + "=\"" + attr.Value + "\"";
             }
             return retStr;
