@@ -36,11 +36,11 @@ namespace TrainingTasks4
             Assert.AreEqual("<div test=\"testvalue\" class=\"wow\"></div>", html.ToString());
         }
 
-        //[Test]
-        //public void BasicHtmlBuilderWithoutToString()
-        //{
-        //    Html html = Html.Tag("span").Attr("test", "testvalue");
-        //    Assert.True("<span test=\"testvalue\"></span>" == html);
-        //}
+        [Test]
+        public void BasicHtmlBuilderWithoutToString()
+        {
+            Html html = Html.Tag("span").Attr("test", "testvalue");
+            Assert.True("<span test=\"testvalue\"></span>" == html);
+        }
     }
 }

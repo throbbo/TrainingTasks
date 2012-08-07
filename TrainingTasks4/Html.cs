@@ -14,6 +14,12 @@ namespace TrainingTasks4
             Attrs = new Dictionary<string, string>();
             Classes = new List<string>();
         }
+
+        public static implicit operator string(Html html)
+        {
+            return html.ToString();
+        }
+
         public string MyTag { get; set; }
         public Dictionary<string, string> Attrs { get; set; }
         public List<string> Classes { get; set; }
@@ -47,6 +53,11 @@ namespace TrainingTasks4
         public override string ToString()
         {
             return string.Format("<{0} {1}{2}></{0}>",MyTag, GetAllAttrs(Attrs),GetAllClasses(Classes));
+        }
+
+        public override bool Equals(object obj)
+        {
+            return this.ToString().Equals(obj);
         }
 
         public string GetAllAttrs (Dictionary<string,string> attrs )
