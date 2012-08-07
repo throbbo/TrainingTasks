@@ -15,7 +15,7 @@ namespace TrainingTasks3
 
         public List<MenuItem> Build()
         {
-            return new List<MenuItem>();
+            return _config.StaticMenuItems;
         }
     }
 }
