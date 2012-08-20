@@ -8,6 +8,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainingTasks3", "TrainingTasks3\TrainingTasks3.csproj", "{D0E39CCF-E238-4F98-9C9E-53140AD72F73}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainingTasks4", "TrainingTasks4\TrainingTasks4.csproj", "{AF15D1BD-E605-4AEC-8A24-ED08552DB64A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D0E39CCF-E238-4F98-9C9E-53140AD72F73} = {D0E39CCF-E238-4F98-9C9E-53140AD72F73}
+		{9B5D1DEB-B267-4E0E-B727-1D2698AEB0C7} = {9B5D1DEB-B267-4E0E-B727-1D2698AEB0C7}
+		{B15AF8FB-20C1-4C6E-85D5-5CF94CEEB6C1} = {B15AF8FB-20C1-4C6E-85D5-5CF94CEEB6C1}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

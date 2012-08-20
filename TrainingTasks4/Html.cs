@@ -3,10 +3,6 @@ using System.Collections.Generic;
 
 namespace TrainingTasks4
 {
-
-
-
-
     public class Html
     {
         public Html()

@@ -43,8 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HtmlHelper.cs" />
     <Compile Include="Html.cs" />
+    <Compile Include="HtmlInput.cs" />
     <Compile Include="HtmlTests.cs" />
+    <Compile Include="IHtmlElement.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -42,5 +42,31 @@ namespace TrainingTasks4
             Html html = Html.Tag("span").Attr("test", "testvalue");
             Assert.True("<span test=\"testvalue\"></span>" == html);
         }
+
+        [Test]
+        public void HtmlHelperTest1()
+        {
+            var data = new MyClass {Location = "Park Orchards"};
+            var htmlHelper = new HtmlHelper<MyClass>("");
+            var html = htmlHelper.InputFor(x => x.Location, data).ToString();
+
+            var expectedHtml = string.Format("<input name=\"Location\" value=\"{0}\" />", data.Location);
+            Assert.AreEqual(expectedHtml, html);
+        }
+
+        [Test]
+        public void HtmlHelperTest2()
+        {
+            var data = new MyClass {Location = "Park Orchards"};
+            var htmlHelper = new HtmlHelper<MyClass>("span");
+            var expectedHtml = string.Format("<span test=\"testvalue\"><input name=\"Location\" value=\"{0}\" /></span>", data.Location);
+            var actualHtml = htmlHelper.Attr("test", "testvalue").InputFor(x => x.Location, data).ToString();
+            Assert.AreEqual(expectedHtml, actualHtml);
+        } 
+    }
+
+    public class MyClass
+    {
+        public string Location { get; set; }
     }
 }
