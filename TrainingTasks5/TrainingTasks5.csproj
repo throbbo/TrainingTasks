@@ -44,7 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LinqTests.cs" />
+    <Compile Include="LinqTests.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Data.cs" />
     <Compile Include="NewLinqOperatorTests.cs" />
     <Compile Include="Product.cs" />

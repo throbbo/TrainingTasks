@@ -12,7 +12,7 @@ namespace TrainingTasks5
         [Test]
         public void find_all_products_that_are_out_of_stock()
         {
-            var products = Data.GetProducts();
+            var products = Data.GetProducts().Where(x =>x.UnitsInStock==0 );
 
             Assert.AreEqual(5, products.Count());
         }
@@ -20,7 +20,7 @@ namespace TrainingTasks5
         [Test]
         public void find_all_products_that_are_in_stock_and_cost_more_than_3_per_unit()
         {
-            var products = Data.GetProducts();
+            var products = Data.GetProducts().Where(x =>x.UnitsInStock>0 && x.UnitPrice>3 );
 
             Assert.AreEqual(71, products.Count());
         }
@@ -28,7 +28,7 @@ namespace TrainingTasks5
         [Test]
         public void find_the_sum_of_products()
         {
-            var productsSum = Data.GetProducts();
+            var productsSum = Data.GetProducts().Sum(x=>x.UnitPrice*x.UnitsInStock);
 
             Assert.AreEqual(74050.85m, productsSum);
         }
@@ -36,7 +36,7 @@ namespace TrainingTasks5
         [Test]
         public void find_the_number_of_distinct_categories()
         {
-            var distinctCats = Data.GetProducts();
+            var distinctCats = Data.GetProducts().Select(x => x.Category).Distinct();
 
             Assert.AreEqual(8, distinctCats.Count());
         }
@@ -44,7 +44,7 @@ namespace TrainingTasks5
         [Test]
         public void find_the_number_of_distinct_categories_another_way()
         {
-            var distinctCats = Data.GetProducts();
+            var distinctCats = from p in Data.GetProducts() select p.Category;
 
             Assert.AreEqual(8, distinctCats.Count());
         }
