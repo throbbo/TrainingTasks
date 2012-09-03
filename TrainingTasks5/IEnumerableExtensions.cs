@@ -14,7 +14,8 @@ namespace Robs.LinqExtensions
             {
                 if(condition())
                 {
-                    listReturn.Add(item);
+                    if(predicate(item))
+                        listReturn.Add(item);
                 }
             }
 

@@ -20,7 +20,18 @@ namespace TrainingTasks5
         public void WhereIfLinqTakesBooleanPredicateAndOnlyEvaluatesThePredicateIfTheConditionIsTrue()
         {
             var list = Data.GetProducts().Select(x => new {Product = x, IsActive = (x.UnitPrice>10 ? true : false) });
-            list.WhereIf(()=> true, x=>x.IsActive);
+            var listActual = list.WhereIf(()=> true, x=>x.IsActive).ToList();
+            var listExpected = Data.GetProducts().Where(x => x.UnitPrice > 10).ToList();
+
+            for (int i = 0; i < listExpected.Count; i++)
+            {
+                Assert.AreEqual(listExpected[i].Category, listActual[i].Product.Category);
+                Assert.AreEqual(listExpected[i].ProductID, listActual[i].Product.ProductID);
+                Assert.AreEqual(listExpected[i].UnitPrice, listActual[i].Product.UnitPrice);
+                Assert.AreEqual(listExpected[i].ProductName, listActual[i].Product.ProductName);
+                Assert.AreEqual(listExpected[i].UnitsInStock, listActual[i].Product.UnitsInStock);
+            }
+
         }
 
         [Test]
