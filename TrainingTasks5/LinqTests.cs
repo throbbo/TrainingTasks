@@ -44,7 +44,7 @@ namespace TrainingTasks5
         [Test]
         public void find_the_number_of_distinct_categories_another_way()
         {
-            var distinctCats = from p in Data.GetProducts() select p.Category;
+            var distinctCats = (from p in Data.GetProducts() select p.Category).Distinct();
 
             Assert.AreEqual(8, distinctCats.Count());
         }
