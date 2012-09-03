@@ -20,7 +20,7 @@ namespace TrainingTasks5
         public void WhereIfLinqTakesBooleanPredicateAndOnlyEvaluatesThePredicateIfTheConditionIsTrue()
         {
             var list = Data.GetProducts().Select(x => new {Product = x, IsActive = (x.UnitPrice>10 ? true : false) });
-            list.WhereIf(() => true, x=>x.IsActive);
+            list.WhereIf(()=> true, x=>x.IsActive);
         }
 
         [Test]
