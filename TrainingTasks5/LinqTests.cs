@@ -75,11 +75,25 @@ namespace TrainingTasks5
         [Test]
         public void find_the_top_two_priced_products_in_separate_categories_by_unitprice()
         {
-            var products = Data.GetProducts().Select(x => new
-                                                              {
-                                                                  Product = x,
-                                                                  x.Category
-                                                              }).ToList();
+            //var products = Data.GetProducts()
+            //                    .GroupBy(x=>x.Category)
+            //                    .Select(x => new
+            //                                                  {
+            //                                                      Product = Data.GetProducts().Single(x=> x.UnitPrice == x.Max(y => y.UnitPrice)),
+            //                                                      Category = x.Key
+            //                                                  }).ToList();
+
+            var products = (from p in Data.GetProducts()
+                            group p by p.Category
+                            into p2
+                            select new
+                                       {
+                                           Category = p2.Key,
+                                           Product = Data.GetProducts().First(x=> x.UnitPrice == p2.Max(y => y.UnitPrice))
+                                       })
+                            .OrderByDescending(x=>x.Product.UnitPrice)
+                            .Take(2)
+                            .ToArray();
 
             Assert.AreEqual(38, products[0].Product.ProductID);
             Assert.AreEqual("Beverages", products[0].Category);
