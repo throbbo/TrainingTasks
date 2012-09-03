@@ -52,7 +52,9 @@ namespace TrainingTasks5
         [Test]
         public void find_the_cheapest_product_with_the_category_Seafood_and_Beverages()
         {
-            var products = Data.GetProducts();
+            var products = Data.GetProducts()
+                .Where(x => x.Category == "Seafood" || x.Category == "Beverages")
+                .OrderBy(y => y.UnitPrice).Take(2);
             var categories = products.Select(x => new {x.Category, CheapestProduct = x}).ToList();
 
             Assert.AreEqual(2, categories.Count);
@@ -65,7 +67,7 @@ namespace TrainingTasks5
         [Test]
         public void find_the_average_prices_of_seafood()
         {
-            var productAv = Data.GetProducts().Average(x=>x.UnitPrice);
+            var productAv = Data.GetProducts().Where(x=>x.Category=="Seafood").Average(x=>x.UnitPrice);
 
             Assert.AreEqual(20.6825m, productAv);
         }
