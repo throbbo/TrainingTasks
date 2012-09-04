@@ -34,6 +34,12 @@ namespace Robs.LinqExtensions
 
         }
 
+        public static IEnumerable<T> AddTwoListsTogether<T>(this IEnumerable<T> list, IEnumerable<T> listAlt)
+        {
+            foreach (var item in list) yield return item;
+            foreach (var item in listAlt) yield return item;
+        }
+        
         //public static IEnumerable<T> Alternate<T> (this IEnumerable<T> list, IEnumerable<T> listAlt)
         //{
         //    var listReturn = new List<T>();

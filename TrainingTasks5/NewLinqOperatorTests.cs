@@ -58,5 +58,42 @@ namespace TrainingTasks5
             }
 
         }
+       
+        [Test]
+        public void AddTwoListsTogether()
+        {
+            var list1 = Data.GetProducts().Where(x=>x.UnitPrice<10);
+            var list2 = Data.GetProducts().Where(x=>x.UnitPrice>=10);
+            var listActual = Data.GetProducts().ToList();
+            var listExpected = list1.AddTwoListsTogether(list2).OrderBy(x=>x.ProductID).ToList();
+
+            for (int i = 0; i < listExpected.Count; i++)
+            {
+                Assert.AreEqual(listExpected[i].Category, listActual[i].Category);
+                Assert.AreEqual(listExpected[i].ProductID, listActual[i].ProductID);
+                Assert.AreEqual(listExpected[i].UnitPrice, listActual[i].UnitPrice);
+                Assert.AreEqual(listExpected[i].ProductName, listActual[i].ProductName);
+                Assert.AreEqual(listExpected[i].UnitsInStock, listActual[i].UnitsInStock);
+            }
+
+        }
+
+        [Test]
+        public void SkipWhileIteratorTest()
+        {
+            var listActual = Data.GetProducts().Where(x => x.UnitPrice <= 10 || x.UnitPrice >= 100).OrderBy(x => x.ProductID).ToList();
+            var listExpected = Data.GetProducts().SkipWhile(x => x.UnitPrice > 10 && x.UnitPrice < 100).OrderBy(x => x.ProductID).ToList();
+
+            for (int i = 0; i < listExpected.Count; i++) 
+            {
+                Assert.AreEqual(listExpected[i].Category, listActual[i].Category);
+                Assert.AreEqual(listExpected[i].ProductID, listActual[i].ProductID);
+                Assert.AreEqual(listExpected[i].UnitPrice, listActual[i].UnitPrice);
+                Assert.AreEqual(listExpected[i].ProductName, listActual[i].ProductName);
+                Assert.AreEqual(listExpected[i].UnitsInStock, listActual[i].UnitsInStock);
+            }
+
+        }
+
     }
 }
